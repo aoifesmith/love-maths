@@ -15,6 +15,11 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    document.getElementById("answer-box").addEventListener("keydown", function(event){
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    });
 
     runGame("addition"); //default game that plays upon page loading
 });
@@ -26,6 +31,13 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 
 function runGame(gameType) {
+
+    //clear the answer box everytime runGame is loaded as courtesy so user doesn't need to delete/clear box each time. 
+    document.getElementById("answer-box").value ="";
+    //Set cursor to be in the answer box as soon as the page is loaded so you don't have to click on it again yourself.
+    document.getElementById("answer-box").focus();
+
+
 
     //Creates two random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
