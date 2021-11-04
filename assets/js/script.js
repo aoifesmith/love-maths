@@ -35,7 +35,9 @@ function runGame(gameType) {
         displayAdditionQuestion(num1, num2);
     } else if (gameType === "multiply") {
         displayMultiplyQuestion(num1, num2);
-    }else {
+    } else if (gameType === "subtract") {
+        displaySubtractQuestion(num1, num2); 
+    } else {
         alert(`Unknown game type: ${gameType}`);
         throw `Unknown game type: ${gameType}. Aborting!`; //throw statement will stop the game from running passing error msg to console
     }
@@ -75,6 +77,8 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
     } else {
         alert (`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}. Aborting}`;
@@ -109,8 +113,15 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operator').textContent = '+';
 }
 
-function displaySubtractQuestion() {
-
+function displaySubtractQuestion(operand1, operand2) {
+    /**
+     * Using ternary operator is shorter and works like and if statement - is operand1 bigger than operand2? 
+     * If so, return operand1. And if not, the else part which comes after the colon is to return operand2.
+     */
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    //If operand 1 is largest then we want to display operand 2 as our second number otherwise we'll display operand 1.
+    document.getElementById('operand2').textContent = operand2 > operand2 ? operand1 : operand1;
+    document.getElementById('operator').textContent = '-';
 }
 
 function displayMultiplyQuestion(operand1, operand2) {
